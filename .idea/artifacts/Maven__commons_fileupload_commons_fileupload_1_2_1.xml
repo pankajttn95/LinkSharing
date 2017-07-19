@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="Maven__commons-fileupload_commons-fileupload_1_2_1">
+    <output-path>$PROJECT_DIR$/out/artifacts/Maven__commons_fileupload_commons_fileupload_1_2_1</output-path>
+    <root id="root">
+      <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.1" />
+    </root>
+  </artifact>
+</component>

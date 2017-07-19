@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LinkSharing2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="LinkSharing-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="LinkSharing2:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="artifact" artifact-name="Maven__commons-fileupload_commons-fileupload_1_2_1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
