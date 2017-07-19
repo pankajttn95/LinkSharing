@@ -2,12 +2,7 @@ package com.services;
 
 import com.dao.UserDaoImpl;
 import com.model.User;
-import com.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * Created by root on 14/7/17.
@@ -40,32 +35,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void checkLogin(User u1) {
-
+    public boolean checkLogin(User u1) {
+        boolean pointer = false;
         try {
 
             System.out.println(u1+"ser");
-            userDao.checkUser(u1);
+            pointer=userDao.checkUser(u1);
         }
         catch(Exception e)
         {
             System.out.println("prob in userserviceimpl" + e);
         }
+        finally {
+            return pointer;
+        }
+
 
     }
-    @Override
+   /* @Override
     public void userImageUpload(MultipartFile[] fileupload, User user) throws IOException {
 
         if (fileupload != null && fileupload.length > 0) {
             for (MultipartFile afile : fileupload) {
-                System.out.println("image uploaded");
+                System.out.println("image upload");
                 user.setPhoto(afile.getBytes());
             }
         } else {
 
-            System.out.println("image not uploaded");
+            System.out.println("image not upload");
         }
-    }
+    }*/
 
 
     public void setUserDao(UserDaoImpl userDao) {

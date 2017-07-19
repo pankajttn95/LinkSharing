@@ -312,7 +312,7 @@
         <div class="row insidediv">
             <div class="page-header insidehead" ><strong>Register</strong></div>
             <div class="panel-body">
-                <form action="/register" method="post" id="registeration_form" enctype="multipart/form-data">
+                <form action="/register" method="post" id="registeration_form" <%--enctype="multipart/form-data"--%>>
                     <div class="form-group">
                         <label for="usrf">First Name:*</label>
                         <input type="text" class="form-control" name="fname" placeholder="First name"  style="border:solid black;" id="usrf">

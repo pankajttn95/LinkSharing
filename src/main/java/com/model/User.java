@@ -6,6 +6,7 @@ import sun.security.util.Password;
 
 import javax.persistence.*;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 @Entity
 public class User {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column( nullable = false)
@@ -37,6 +39,34 @@ public class User {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     Date lastUpdated;
+    /*@ManyToOne
+    Topic topic;*/
+
+   /* public Topic getTopic() {
+        return topic;
+    }*/
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", photo=" + Arrays.toString(photo) +
+                ", admin=" + admin +
+                ", active=" + active +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                ", topic=" + +
+                '}';
+    }
+
+   /* public void setTopic(Topic topic) {
+        this.topic = topic;
+    }*/
 
     public int getId() {
         return id;
@@ -127,23 +157,6 @@ public class User {
 
     public void setLname(String lname) {
         this.lname = lname;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", photo=" + photo +
-                ", admin=" + admin +
-                ", active=" + active +
-                ", dateCreated=" + dateCreated +
-                ", lastUpdated=" + lastUpdated +
-                '}';
     }
 
 

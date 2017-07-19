@@ -8,5 +8,5 @@ import com.model.User;
 public interface UserDao {
 
     public boolean addUserDao(User user);
-    public void checkUser(User user1);
+    public boolean checkUser(User user1);
 }

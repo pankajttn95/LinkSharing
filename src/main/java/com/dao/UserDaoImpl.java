@@ -3,14 +3,9 @@ package com.dao;
 import com.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
-import javax.management.Query;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -56,26 +51,30 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void checkUser(User user1) {
+    public boolean checkUser(User user1) {
 
         Session session1 = sessionFactory.openSession();
         session1.beginTransaction();
-        System.out.println(user1+"dao");
-        String username=user1.getUsername();
-        String pass=user1.getPassword();
+        System.out.println(user1 + "dao");
+        String username = user1.getUsername();
+        String pass = user1.getPassword();
         System.out.println(username + pass);
 
-        int counter=1;
+        int counter = 1;
 
-            javax.persistence.Query query = session1.createQuery("from User u where u.username = :user and u.password = :pass " +
-                    "or u.email = :user and u.password = :pass");
-            query.setParameter("user",username);
-            query.setParameter("pass",pass);
+        javax.persistence.Query query = session1.createQuery("from User u where u.username = :user and u.password = :pass " +
+                "or u.email = :user and u.password = :pass");
+        query.setParameter("user", username);
+        query.setParameter("pass", pass);
 
-            List list=query.getResultList();
+        List list = query.getResultList();
 
-            System.out.println(list.get(1));
+        if (list.isEmpty()) {
 
+            return false;
+        } else {
+            return true;
+        }
 
     }
 
