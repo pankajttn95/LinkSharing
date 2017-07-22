@@ -71,13 +71,11 @@
         <span class="fa fa-file-text" data-toggle="modal" data-target="#myModal4"></span>
         &nbsp;&nbsp;
         <span class="glyphicon glyphicon-user"></span>
-        <select>
-            <option>Profile</option>
-            <option>Users</option>
-            <option>Topics</option>
-            <option>Posts</option>
-            <option>Logout</option>
-        </select>
+
+        <ul name="values">
+            <li><a href="/profile"> Profile</a></li>|<li><a href="/logout">Logout</a></li>
+        </ul>
+
       </span>
         </div>
     </nav>
@@ -107,7 +105,7 @@
                         </div>
 
                         <div class="col-md-10">
-                            <a href="#">Uday Pratap Singh </a>
+                            <a href="#">Uday Pratap Singh</a>
                             <table>
                                 <tr>
                                     <td>
@@ -349,7 +347,8 @@
                             <h4 class="modal-title">Send Invitation</h4>
                         </div>
                         <div class="modal-body">
-                            Email:* <input type="text" placeholder="Email" style="position:relative;margin-left:40%;">
+                            <form action="/sendemail" method="get">
+                            Email:* <input type="text" name="recEmail" placeholder="Email" style="position:relative;margin-left:40%;">
                             <br><br>
                             Topic:* <select style="position:relative;margin-left:40%;">
                             <option>Topic</option>
@@ -357,6 +356,7 @@
                         </select>
                             <br><br>
                             <button type="submit" style="position:relative; margin-left:48%;">Invite</button>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -518,14 +518,16 @@
                             <h4 class="modal-title">Create Topic</h4>
                         </div>
                         <div class="modal-body">
-                            Name:* <input type="text" placeholder="Email" style="position:relative;margin-left:40%;">
+                            <form method="get" action="/createtopic">
+                            Name:* <input type="text" name= "tname" placeholder="Topic Name" style="position:relative;margin-left:40%;">
                             <br><br>
-                            Visibility:* <select style="position:relative;margin-left:40%;">
-                            <option>Public</option>
-                            <option>Private</option>
+                            Visibility:* <select name="visibility" style="position:relative;margin-left:40%;">
+                            <option name="public">Public</option>
+                            <option name="private">Private</option>
                         </select>
                             <br><br>
                             <button type="submit" style="position:relative; margin-left:48%;">Save</button>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

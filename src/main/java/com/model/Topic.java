@@ -1,13 +1,12 @@
-/*
 package com.model;
 
-import javax.persistence.*;
-import java.sql.Date;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-*/
-/**
- * Created by DELL on 19-07-2017.
- *//*
+import javax.persistence.*;
+import java.util.Date;
+
+
 
 @Entity
 public class Topic {
@@ -16,11 +15,17 @@ public class Topic {
     int id;
     @Column(unique = true , nullable = false)
     String name;
-    //User createdby;
+    @ManyToOne
+    User createdby;
+    @CreationTimestamp
+            @Temporal(TemporalType.TIMESTAMP)
     Date datecreated;
+    @UpdateTimestamp
+            @Temporal(TemporalType.TIMESTAMP)
     Date lastupdated;
 
-    enum Visibility{
+
+    public enum  Visibility{
         Public("Public"),Private("Private");
 
         private String visible;
@@ -68,7 +73,7 @@ public class Topic {
     public Visibility getVisibility() {
         return visibility;
     }
-
+    @Enumerated(EnumType.STRING)
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
     }
@@ -84,4 +89,3 @@ public class Topic {
                 '}';
     }
 }
-*/

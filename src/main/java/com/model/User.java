@@ -2,16 +2,22 @@ package com.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.mapping.Collection;
+import org.hibernate.mapping.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import sun.security.util.Password;
+
 
 import javax.persistence.*;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 
 /**
  * Created by root on 13/7/17.
  */
+
 @Entity
 public class User {
 
@@ -27,7 +33,7 @@ public class User {
     String username;
     @Column( nullable = false)
     String password;
-    @Lob
+    @Column(length = 100000)
     byte[] photo;
     @Column(nullable = false)
     Boolean admin;
@@ -39,12 +45,10 @@ public class User {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     Date lastUpdated;
-    /*@ManyToOne
-    Topic topic;*/
+    @OneToMany(mappedBy = "createdby")
+    java.util.Collection<Topic> topic=new HashSet<Topic>();
 
-   /* public Topic getTopic() {
-        return topic;
-    }*/
+
 
     @Override
     public String toString() {
@@ -60,13 +64,17 @@ public class User {
                 ", active=" + active +
                 ", dateCreated=" + dateCreated +
                 ", lastUpdated=" + lastUpdated +
-                ", topic=" + +
+                ", topic=" +topic +
                 '}';
     }
 
-   /* public void setTopic(Topic topic) {
+    public java.util.Collection<Topic> getTopic() {
+        return topic;
+    }
+
+    public void setTopic(java.util.Collection<Topic> topic) {
         this.topic = topic;
-    }*/
+    }
 
     public int getId() {
         return id;

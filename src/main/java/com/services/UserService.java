@@ -2,6 +2,8 @@ package com.services;
 
 import com.model.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by root on 14/7/17.
  */
@@ -13,5 +15,8 @@ public interface UserService {
 
     //public void userImageUpload(MultipartFile[] fileupload, User user) throws IOException;
 
+    public boolean emailCheck(String e);
 
+    public boolean passwordChange(User user);
+    public boolean updatePassword(String password,HttpServletRequest request);
 }

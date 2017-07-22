@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.dao.UserDaoImpl;
+import com.dao.UserDAOImpl;
 import com.model.User;
 import com.services.PassEnDyService;
 import com.services.UserServiceImpl;
@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by DELL on 16-07-2017.
@@ -19,15 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 public class UserLoginController {
 
     @Autowired
-    UserDaoImpl userDao;
+    UserDAOImpl userDao;
     @Autowired
     UserServiceImpl userService;
 
     @RequestMapping(value = "/login" , method = RequestMethod.GET)
-    public ModelAndView registration(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView registration(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception {
 
         ModelAndView modelAndView = null;
-
+        session=request.getSession(false);
 
         modelAndView = new ModelAndView("dashboard");
         User user = new User();
@@ -40,12 +41,17 @@ public class UserLoginController {
         // calling User service implementation
         value= userService.checkLogin(user);
         if(value==true){
-        return modelAndView;
+            session.setAttribute("username",request.getParameter("usremail"));
+            session.setAttribute("userid",user);
+            String email=user.getEmail();
+            session.setAttribute("email",email);
+
+            return modelAndView;
 
 
     }
     else {
-          ModelAndView  modelAndView2 = new ModelAndView("User");
+          ModelAndView  modelAndView2 = new ModelAndView("homepage");
           return modelAndView2;
 
         }

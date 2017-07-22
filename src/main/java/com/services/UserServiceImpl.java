@@ -1,8 +1,10 @@
 package com.services;
 
-import com.dao.UserDaoImpl;
+import com.dao.UserDAOImpl;
 import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by root on 14/7/17.
@@ -12,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDAOImpl userDao;
 
 
     {
@@ -52,6 +54,31 @@ public class UserServiceImpl implements UserService {
 
 
     }
+
+    @Override
+    public boolean emailCheck(String u) {
+
+            return (userDao.authenticateEmail(u));
+
+        }
+
+    @Override
+    public boolean passwordChange(User user) {
+
+        boolean status=emailCheck(user.getEmail());
+        if (status==true)
+            return (userDao.changePassword(user));
+        else
+            return false;
+
+    }
+
+    @Override
+    public boolean updatePassword(String password, HttpServletRequest request) {
+        return false;
+    }
+
+
    /* @Override
     public void userImageUpload(MultipartFile[] fileupload, User user) throws IOException {
 
@@ -67,11 +94,11 @@ public class UserServiceImpl implements UserService {
     }*/
 
 
-    public void setUserDao(UserDaoImpl userDao) {
+    public void setUserDao(UserDAOImpl userDao) {
         this.userDao = userDao;
     }
 
-    public UserDaoImpl getUserDao() {
+    public UserDAOImpl getUserDao() {
         return userDao;
     }
 }
